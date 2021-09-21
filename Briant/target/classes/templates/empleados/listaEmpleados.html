@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>UNIT-00 | Listado de Productos</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body >
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color:rgb(0, 128, 255)">
+        <a class="navbar-brand" href="#">UNIT-00</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              
+              
+            </li>
+			 <li class="nav-item">
+              <a class="nav-link" href="#"></a>
+            </li>
+          </ul>  
+         
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">     
+      <hr style="border:0px">
+      <div class="container"> 
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Productos</strong></h4>              
+          <div class="card-body table-responsive">
+            <a class="btn  text-white" th:href="@{/empleados/crear}" role="button" style="background-color:rgb(0, 128, 255)"><i class="fas fa-file" aria-hidden="true"></i> Nuevo producto</a>            
+            <hr style="border:0px">
+            <table class="table table-hover">
+              <thead class="text-white" style="background-color:rgb(0, 128, 255)">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripcion</th>
+				  <th scope="col">fecha de llegada</th>
+				  <th scope="col">Precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="a:${empleados}">
+                  <th scope="row" th:text="${a.id}"></th>
+                  <td th:text="${a.nombre}"></td>
+                  <td th:text="${a.email}"></td>
+				  <!--<td th:text="${a.genero}"></td> -->
+				  <!--Como el tipo Character es un objeto, no podemos evaluarlo como
+				  	un primitivo, razon por la cual se debe convertir a String y
+				  	evaluarlo como String para pintar la leyenda Femenino o Masculino -->
+				 
+				  <td th:text="${a.fechaNacimiento}"></td>
+				   <td th:text="${a.salario}"></td>
+				  
+                  <td>
+                    <a th:href="@{/empleados/eliminar(id=${a.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                  </td>
+				
+                </tr>
+				 
+                <tr>
+					<td>Total Registros</td>
+					<td colspan="6" th:text="${total}"></td>
+				</tr>   
+				<tr>
+				<td colspan="6"> Monto Total : [[${montoT}]]</td>
+			  </tr>       
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2021 EmpleadosApp, Inc. | WebApp Desarrollada con Spring Boot 2.4.0 y Bootstrap 4.2 | Briant Gustavo Gonzalez rosales | &middot; <a href="#">Privacy</a>
+          &middot; <a href="#">Terms</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>
